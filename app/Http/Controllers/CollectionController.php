@@ -106,10 +106,36 @@ class CollectionController extends Controller
 
     public function collectionLima()
     {
-        $collection = collect([
-            "name" => "adri lukman",
-            "job" => "Fullstack Engineer",
-            "specialist" => "Web Dev",
+        $collection = collect([   // Nested array
+            ["namaProduk" => "Asus N544", "harga" => 6000000],
+            ["namaProduk" => "Asus ROG", "harga" => 20000000],
+            ["namaProduk" => "Asus ROG", "harga" => 8500000],
+            ["namaProduk" => "HP eliteBook", "harga" => 7000000],
         ]);
+
+        // dump($collection->sortBy('harga')); // diurutkan berdasarkan harga termurah
+        // dump($collection->sortByDesc('harga')); // diurutkan berdasarkan harga tertinggi
+
+
+        // dump($collection->sortBy('harga')->all()); //di urutkan berdasarkan key dan ditampilkan dalam bentuk array
+
+        // dump($collection->sortByDesc('harga')->each(function ($key, $val) { // Urutkan berdasarkan key harga dan tampilkan menggunakan method each()
+        //     dump($key['namaProduk'], $key['harga']);
+        // }));
+
+        // $cek = $collection->filter(function ($val, $key) {
+        //     return $val['harga'] > 8000000;
+        // });
+        // dump($cek);
+
+        // dump($collection->where('harga', 6000000)); //mencari element dengan harga 6000000
+        // dump($collection->where('harga', '>=', 7000000)); // mencari element dengn harga lebih atau sama dengan7jt
+        // dump($collection->where('harga', 20000000)->first()); //ditampilkan dalam bentuk array biasa bukan collection
+        // dump($collection->firstWhere('harga', 20000000)); //ditampilkan dalam bentuk array biasa bukan collection
+        // dump($collection->where('harga', '>=', 7000000)->all()); // mencari element dengn harga lebih atau sama dengan7jt ditampilkan dalam array Biasa
+        // dump($collection->whereBetween('harga', [7000000, 20000000])); // Cari element dengan harga antara 700000 - 20000000
+        // dump($collection->whereNotBetween('harga', [7000000, 20000000])); // Cari element dengan harga bukan di antara 700000 - 20000000
+        dump($collection->whereBetween('harga', [7000000, 20000000])->sortBy('harga')->first()); //cari element dari harga 7jt -20jt urutkan ascending tampilkan dalam bentuk array biasa
+
     }
 }
