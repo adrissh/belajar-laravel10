@@ -135,7 +135,50 @@ class CollectionController extends Controller
         // dump($collection->where('harga', '>=', 7000000)->all()); // mencari element dengn harga lebih atau sama dengan7jt ditampilkan dalam array Biasa
         // dump($collection->whereBetween('harga', [7000000, 20000000])); // Cari element dengan harga antara 700000 - 20000000
         // dump($collection->whereNotBetween('harga', [7000000, 20000000])); // Cari element dengan harga bukan di antara 700000 - 20000000
-        dump($collection->whereBetween('harga', [7000000, 20000000])->sortBy('harga')->first()); //cari element dari harga 7jt -20jt urutkan ascending tampilkan dalam bentuk array biasa
+        // dump($collection->whereBetween('harga', [7000000, 20000000])->sortBy('harga')->first()); //cari element dari harga 7jt -20jt urutkan ascending tampilkan dalam bentuk array biasa
+        // dump($collection->whereIn('harga', [2000000, 6500000, 20000000])); //mirip query select , cara element denganhrga 2jt , 6,5jt atau 20jt
+        // dump($collection->whereNotIn('harga', [20000000])); //cari harga selain 20jt
+        // dump($collection->pluck('namaProduk')); //Ambil nama produk dari semua element
+    }
 
+    public function collectionEnam() // Object array Collection Method
+    {
+        $siswa00 = new \stdClass();
+        $siswa00->nama = "Adri lukman";
+        $siswa00->sekolah = "SMAN 1 JPK";
+        $siswa00->jurusan = "IPA";
+
+        $siswa01 = new \stdClass();
+        $siswa01->nama = "Sity Susansah";
+        $siswa01->sekolah = "SMAN 1 SRD";
+        $siswa01->jurusan = "IPS";
+
+        $siswa02 = new \stdClass();
+        $siswa02->nama = "Indra Supriadi";
+        $siswa02->sekolah = "SMAN 1 SMI";
+        $siswa02->jurusan = "IPA";
+
+        $siswas = collect([
+            0 => $siswa00,
+            1 => $siswa01,
+            2 => $siswa02,
+        ]);
+
+        // dump($siswas);
+        // dump($siswas[0]->nama); // Mengakses nilai dengan collection
+        // foreach ($siswas as $siswa) {
+        // echo $siswa->nama;
+        // };
+
+        // $tampil = $siswas->where('nama', 'Adri lukman')->first(); //      tampilkan nama sekolah adri harus pake first supaya bentuk objek
+        // echo $tampil->sekolah;
+        // dump($tampil);
+
+        // $tampil3 = $siswas->get(0);
+        // dump($tampil3);
+        // echo $tampil3->nama;
+
+        $hasil = $siswas->groupBy('jurusan'); //sama seperti query group di SQL
+        dump($hasil);
     }
 }
