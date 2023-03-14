@@ -103,4 +103,13 @@ class CollectionController extends Controller
             echo "$key : $val <br>";
         }));
     }
+
+    public function collectionLima()
+    {
+        $collection = collect([
+            "name" => "adri lukman",
+            "job" => "Fullstack Engineer",
+            "specialist" => "Web Dev",
+        ]);
+    }
 }
